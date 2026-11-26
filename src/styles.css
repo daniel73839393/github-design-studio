@@ -154,3 +154,31 @@
     color: var(--color-foreground);
   }
 }
+
+/* Link Studio editor controls */
+.control {
+  min-height: 44px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 0.75rem;
+  background: rgb(0 0 0 / 25%);
+  padding: 0.7rem 0.9rem;
+  color: white;
+  font: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+.control:focus { border-color: rgb(255 255 255 / 45%); background: rgb(0 0 0 / 35%); }
+.control::placeholder { color: rgb(255 255 255 / 25%); }
+.control option { background: #17141f; color: white; }
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: rgb(255 255 255 / 60%);
+  transition: background 160ms ease, color 160ms ease;
+}
+.icon-button:hover { background: rgb(255 255 255 / 10%); color: white; }
+.icon-button:disabled { opacity: .2; cursor: not-allowed; }
