@@ -50,7 +50,7 @@ function readSharedProfile(): Profile | null {
     const params = new URLSearchParams(window.location.search);
     const raw = params.get("data");
     if (!raw) return null;
-    const parsed = JSON.parse(decodeURIComponent(raw));
+    const parsed = JSON.parse(raw);
     return { ...initial, ...parsed, links: Array.isArray(parsed.links) ? parsed.links : initial.links };
   } catch { return null; }
 }
@@ -119,7 +119,7 @@ function LinkStudio() {
   const uploadImage = (file?: File) => {
     if (!file) return;
     if (!file.type.startsWith("image/")) { window.alert("Escolha um arquivo de imagem."); return; }
-    if (file.size > 2 * 1024 * 1024) { window.alert("A imagem deve ter no máximo 2 MB para manter o cartão compartilhável."); return; }
+    if (file.size > 120 * 1024) { window.alert("A imagem deve ter no máximo 120 KB para que o endereço compartilhável continue utilizável. Para imagens maiores, use uma URL pública."); return; }
     const reader = new FileReader();
     reader.onload = () => update("backgroundImage", String(reader.result || ""));
     reader.readAsDataURL(file);
