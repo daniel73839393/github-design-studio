@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import {
   Plus, Trash2, ArrowUp, ArrowDown, Copy, Check, ExternalLink, Link2, UserRound,
   Palette, ImagePlus, Eye, Share2, QrCode, Sparkles, Type, Layout, Settings2,
@@ -129,7 +129,7 @@ function LinkStudio() {
     gradientStart: theme.start, gradientEnd: theme.end, backgroundType: "gradient",
     buttonStyle: "solid", textColor: "#ffffff"
   }));
-  const bgStyle: React.CSSProperties = profile.backgroundType === "image" && profile.backgroundImage
+  const bgStyle: CSSProperties = profile.backgroundType === "image" && profile.backgroundImage
     ? { backgroundImage: "linear-gradient(rgba(0,0,0," + (profile.overlay / 100) + "),rgba(0,0,0," + (profile.overlay / 100) + ")),url(" + profile.backgroundImage + ")", backgroundSize: "cover", backgroundPosition: profile.backgroundPosition }
     : profile.backgroundType === "gradient"
       ? { background: "linear-gradient(" + profile.gradientDirection + "," + profile.gradientStart + "," + profile.gradientEnd + ")" }
@@ -233,8 +233,8 @@ function LinkStudio() {
   );
 }
 
-function buttonCss(profile: Profile): React.CSSProperties {
-  const common: React.CSSProperties = { borderRadius: profile.radius, color: profile.buttonStyle==="solid" ? "#17131f" : profile.textColor, border: "1px solid transparent" };
+function buttonCss(profile: Profile): CSSProperties {
+  const common: CSSProperties = { borderRadius: profile.radius, color: profile.buttonStyle==="solid" ? "#17131f" : profile.textColor, border: "1px solid transparent" };
   if (profile.buttonStyle==="outline") return {...common,background:"transparent",border:"1px solid "+profile.color};
   if (profile.buttonStyle==="soft") return {...common,background:profile.color+"28"};
   if (profile.buttonStyle==="glass") return {...common,background:"rgba(255,255,255,.12)",border:"1px solid rgba(255,255,255,.25)",backdropFilter:"blur(12px)"};
@@ -253,7 +253,7 @@ function CardContent({profile,publicMode=false}:{profile:Profile;publicMode?:boo
     <p className="mt-10 text-[9px] font-bold tracking-[.22em] opacity-30">{publicMode?"LINK STUDIO":"SEU CARTÃO DIGITAL"}</p>
   </div>;
 }
-function Label({children}:{children:React.ReactNode}) { return <label className="mb-2 block text-xs font-semibold text-white/60">{children}</label>; }
+function Label({children}:{children:ReactNode}) { return <label className="mb-2 block text-xs font-semibold text-white/60">{children}</label>; }
 function Field({label,value,onChange,placeholder}:{label:string;value:string;onChange:(v:string)=>void;placeholder?:string}) {
   return <div><Label>{label}</Label><input value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder} className="control w-full"/></div>;
 }
